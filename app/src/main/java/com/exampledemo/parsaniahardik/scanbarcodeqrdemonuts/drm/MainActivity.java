@@ -1,9 +1,12 @@
 package com.exampledemo.parsaniahardik.scanbarcodeqrdemonuts.drm;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.budiyev.android.codescanner.CodeScanner;
@@ -12,7 +15,6 @@ import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.zxing.Result;
 
 public class MainActivity extends AppCompatActivity {
-
     private CodeScanner mCodeScanner;
 
     @Override
@@ -40,7 +42,10 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(MainActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(MainActivity.this, Main2Activity.class);
+                        i.putExtra("url", result.getText());
+                        startActivity(i);
                     }
                 });
             }
